@@ -17,15 +17,30 @@
             <p class="title" style="font-size: 60px;">Smetana</h1>
             <p class="version" style="font-style: italic; margin-top: -10px; font-size: 20px;">Version One Beta</h2>
             <div class="button-container">
-                <button class="button" data-type="isofile" onclick="window.location.href='https://github.com/nullcel/smetana/releases/download/v1.0.0/smetana-v1.0.0.iso'">Download (x64_86)</button>
+                <div class="button-with-dolphin">
+                    <button class="button" data-type="isofile" onclick="window.location.href='https://github.com/nullcel/smetana/releases/download/v1.0.0/smetana-v1.0.0.iso'">Download (x64_86)</button>
+                    <img src="dolphins.gif" class="dolphin-image" alt="dolphin">
+                </div>
                 <p id="currentversion">Current Version: v1.0.0</p>
+            </div>
+            <div class="marqueecontainer" onclick="music()" onwheel="volume(event)">
+                <pre>|</pre><marquee id="marquee" scrollamount="8" behavior="scroll" width="200">nullcel productions 2025</marquee><pre>|</pre>
             </div>
         </div>
     </div>
-    
-    <div class="marqueecontainer" onclick="music()" onwheel="volume(event)">
-        <pre>|</pre><Marquee id="marquee" scrollamount="8">nullcel productions 2025</Marquee><pre>|</pre>
+    <div class="second-section">
+        <p class="subtitle"><i>One kernel, One terminal</i></p>
+        <center><img width="600"  class="screenshot" src="screenshot.png" alt="yea it didnt load">
+        </center>
+<br>
+        <div class="description-wrapper">
+            <italic>An OS using the x86_64 architecture, in Assembly and C. Designed for performance and it's lightweight size. It is a work in progress, and is not recommended for daily use.<br> <br>I chose to name it "Smetana" because I don't fucking know.<br> <br>The OS is equiped with GDT (Global Descriptor Table) initialization, IDT (Interrupt Descriptor Table) automatic setup and a very bad keyboard driver implementation, that kinda works. <br><br>It skips ticks sometimes and can cause to skip some keys you typed. Perfect, I love this feature. It also has a CPU identification and hardware detection logic (QEMU and VirtualBox support). Simple but useful. The purpose of the OS is to run it in a virtual machine anyway. I'll plan to write code for baremetal, intel as well as amd. If you want arm, quit.</italic>
+        </div>
+        
     </div>
+
+
+    
 </body>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
@@ -34,7 +49,27 @@
         align-items: center;
         gap: 15px;
     }
+    
+    .screenshot {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 35px;
+    }
 
+    .description-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+
+    italic {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+        font-style: italic;
+        
+    }
     .button-container {
         display: flex;
         flex-direction: column;
@@ -48,21 +83,30 @@
         margin: 0;
     }
     html, body {
-        margin: 10px;
+        margin: 0;
         padding: 0;
-        height: 100%;
-        overflow: hidden;
+        min-height: 100%;
         font-family: Inter, arial, sans-serif;
         line-height: 1.15;
-        background-color: rgb(255, 255, 255);
+        background-color: #ffffff;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
     .container {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 90vh;
-        width: 100%; /* Added width */
+        min-height: 100vh;
+        width: 100%;
+        background-color: #ffffff;
+        margin-bottom: 0;  /* Remove the margin we had before */
+    }
+
+    .second-section {
+        min-height: 100vh;
+        width: 100%;
+        background-color: #f5f5f5;  /* Light gray color */
     }
 
     .content-wrapper {
@@ -83,11 +127,23 @@
         font-family: Inter, arial, sans-serif;
     }
 
+    .subtitle {
+        display: block;
+        text-align: center;
+        font-size: 30px; /* Slightly reduced font size */
+        line-height: 1;
+        margin: 0;
+        font-family: Inter, arial, sans-serif;
+        padding-bottom: 30px;
+        padding-top: 35px;
+    }
+
     .buttons {
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100%; /* Added width */
+        width: 100%;
     }
 
     .buttons[data-astro-cid-ct3bgug4] {
@@ -150,6 +206,20 @@
         transition: background-color var(--transition), color var(--transition), opacity .15s var(--animation);
     }
 
+    .button-with-dolphin {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dolphin-image {
+        position: absolute;
+        height: 50px;
+        width: auto;
+        left: 100%;  /* Position it right after the button */
+        top: 50%;    /* Center vertically */
+        transform: translate(15px, -50%);  /* Adjusted spacing and centering */
+    }
+
     button, select {
         text-transform: none;
     }
@@ -190,27 +260,56 @@
             opacity: .65
         }
     }
+    .buttons {
+    position: relative;
+    &:after {
+        left: -80px;
+        top: -80px
+    }
+
+    &:after,&:before {
+        content: none;
+        display: none;
+        background: none;
+    }
+
+    &:before {
+        bottom: 10px;
+        right: -80px;
+        transform: scaleX(-1)
+    }
+}
+
+    .buttons:after, .buttons:before {
+        display: none;
+    }
+
     .marqueecontainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 35%;
-    left: 50%;
-    bottom: 7%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    font-size: 14px;
-}
-.marquee {
-    width: 420px;
-    overflow: hidden;
-    display: inline-block;
-    font-size: 15px;
-    margin: 0;
-    padding: 0;
-    white-space: nowrap;
-}
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-top: 20px;
+        white-space: nowrap;
+        font-size: 14px;
+        background-color: rgb(255, 255, 255);
+        padding: 5px 0;
+        overflow: hidden;
+    }
+
+    marquee {
+        width: 160px;
+    }
+
+    .marquee {
+        width: 420px;
+        overflow: hidden;
+        display: inline-block;
+        font-size: 15px;
+        margin: 0;
+        padding: 0;
+        white-space: nowrap;
+    }
 .center {
     position: fixed;
     text-align: center;
@@ -269,5 +368,38 @@
     90% { transform: translate(10%,5%) }
     100% { transform: translate(5%,0) }
 }
+
+    .github {
+        display: block;
+        padding: 20px;
+        position: absolute;  /* This ensures it won't affect other elements' positions */
+        top: 0;
+        left: 0;
+    }
+
+    /* Webkit browsers (Chrome, Safari, newer versions of Edge) */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #ffffff;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #e1e1e1;
+        border: 3px solid #ffffff;
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #d1d1d1;
+    }
+
+    /* Firefox */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: #e1e1e1 #ffffff;
+    }
 </style>
 </html>
