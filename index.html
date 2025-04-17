@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smetana OS - Nullcel</title>
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <script src="index.js"></script>
 </head>
@@ -13,21 +13,40 @@
     </a>
 
     <div class="container">
-        
         <div class="content-wrapper">
-            
             <p class="title" style="font-size: 60px;">Smetana</h1>
             <p class="version" style="font-style: italic; margin-top: -10px; font-size: 20px;">Version One Beta</h2>
-            <div class="buttons"></div>
-                <button class="button" data-type="isofile" onclick="window.location.href='https://github.com/nullcel/smetana/releases/download/v1.0.0/smetana-v1.0.0.iso'>Download (x64_86)<br></button>
+            <div class="button-container">
+                <button class="button" data-type="isofile" onclick="window.location.href='https://github.com/nullcel/smetana/releases/download/v1.0.0/smetana-v1.0.0.iso'">Download (x64_86)</button>
+                <p id="currentversion">Current Version: v1.0.0</p>
             </div>
         </div>
     </div>
+    
     <div class="marqueecontainer" onclick="music()" onwheel="volume(event)">
-        <pre>|</pre><Marquee id="marquee" scrollamount="8">nullcel.com</Marquee><pre>|</pre>
+        <pre>|</pre><Marquee id="marquee" scrollamount="8">nullcel productions 2025</Marquee><pre>|</pre>
     </div>
 </body>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
+    .button-version-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #currentversion {
+        font-family: Inter, arial, sans-serif;
+        font-size: 14px;
+        margin: 0;
+    }
     html, body {
         margin: 10px;
         padding: 0;
@@ -124,7 +143,7 @@
         display: block;
         font-size: 20px;
         line-height: 100%;
-        margin: 0 auto; /* Changed margin */
+        margin: 0; /* Changed margin */
         min-width: 255px;
         padding: 20px;
         text-align: center;
