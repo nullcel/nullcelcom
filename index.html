@@ -18,31 +18,65 @@
             <p class="version" style="font-style: italic; margin-top: -10px; font-size: 20px;">Version One Beta</h2>
             <div class="button-container">
                 <div class="button-with-dolphin">
-                    <button class="button" data-type="isofile" onclick="window.location.href='https://github.com/nullcel/smetana/releases/download/v1.1.0/smetana-v1.1.0.iso'">Download (x64_86)</button>
-                    <img src="dolphins.gif" class="dolphin-image" alt="dolphin">
-                </div>
-                <p id="currentversion">Current Version: v1.1.0</p>
+                    <button class="button" data-type="isofile" onclick="window.location.href='https://github.com/nullcel/smetana/releases/download/v1.0.0/smetana-v1.0.0.iso'">Download (x64_86)</button>
+                    <img src="dolphins.gif" class="dolphin-image" alt="dolphin">                </div>
+                <p id="currentversion">Current Version: v1.0.0</p>
             </div>
             <div class="marqueecontainer" onclick="music()" onwheel="volume(event)">
                 <pre>|</pre><marquee id="marquee" scrollamount="8" behavior="scroll" width="200">nullcel productions 2025</marquee><pre>|</pre>
             </div>
         </div>
+        <div class="down-arrow" onclick="document.querySelector('.second-section').scrollIntoView({ behavior: 'smooth' });"></div>
+
     </div>
+    
     <div class="second-section">
-        <p class="subtitle"><i>One kernel, One terminal</i></p>
+        <p class="subtitle">One kernel, One terminal</p>
         <center><img width="600"  class="screenshot" src="screenshot.png" alt="yea it didnt load">
         </center>
 <br>
+        <p class="subsubtitle">About</p>
         <div class="description-wrapper">
-            <italic>An OS using the x86_64 architecture, in Assembly and C. Designed for performance and it's lightweight size. It is a work in progress, and is not recommended for daily use.<br> <br>I chose to name it "Smetana" because I don't fucking know.<br> <br>The OS is equiped with GDT (Global Descriptor Table) initialization, IDT (Interrupt Descriptor Table) automatic setup and a very bad keyboard driver implementation, that kinda works. <br><br>It skips ticks sometimes and can cause to skip some keys you typed. Perfect, I love this feature. It also has a CPU identification and hardware detection logic (QEMU and VirtualBox support). Simple but useful. The purpose of the OS is to run it in a virtual machine anyway. I'll plan to write code for baremetal, intel as well as amd. If you want arm, quit.</italic>
+            <p>An OS using the x86_64 architecture, in Assembly and C. Designed for performance and it's lightweight size. It is a work in progress, and is not recommended for daily use.<br> <br>I chose to name it "Smetana" because I don't fucking know.</p>
         </div>
-        
+
+        <p class="subsubtitle">Core Hardware Concept</p>
+        <div class="description-wrapper">
+            <p>The OS is equiped with GDT (Global Descriptor Table) initialization, IDT (Interrupt Descriptor Table) automatic setup and a very bad keyboard driver implementation, that kinda works. <br><br>It skips ticks sometimes and can cause to skip some keys you typed. Perfect, I love this feature. It also has a CPU identification and hardware detection logic (QEMU and VirtualBox support). Simple but useful. The purpose of the OS is to run it in a virtual machine anyway. I'll plan to write code for baremetal, intel as well as amd. If you want arm, quit.</p>
+            <p></p>
+        </div>
+        <p class="subsubtitle">Usage</p>
+        <div class="description-wrapper">
+            <p>The kernel can boot an Intel PC-compatible virtual machine in 32-bit protected mode, with support for VESA framebuffer graphics, ATA hard disks, ATAPI optical devices, process management, memory protection, simple graphics, and basic filesystem. From there, it's your job to write user-level programs and expand the system.</p>
+        </div>   
     </div>
 
 
     
 </body>
 <style>
+    .down-arrow {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #E1E1E1;
+    opacity: 0;
+    animation: fadeInArrow 1s ease-in-out forwards;
+    cursor: pointer;
+    z-index: 10;
+}
+
+
+@keyframes fadeInArrow {
+    from { opacity: 0; transform: translateX(-80%) translateY(10px); }
+    to { opacity: 1; transform: translateX(-80%) translateY(0); }
+}
+
     @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
     .button-version-wrapper {
         display: flex;
@@ -50,15 +84,19 @@
         gap: 15px;
     }
     
+
+    
     .screenshot {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-bottom: 35px;
+        padding-bottom: 0px;
+        -webkit-filter: drop-shadow(2px 2px 5px #222);
+        filter: drop-shadow(2px 2px 10px #222);
+
     }
 
     .description-wrapper {
-        display: flex;
         justify-content: center;
         align-items: center;
         padding-left: 80px;
@@ -104,10 +142,11 @@
     }
 
     .second-section {
-        min-height: 100vh;
-        width: 100%;
-        background-color: #f5f5f5;  /* Light gray color */
-    }
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(to bottom, #E1E1E1 0%, #ffffff 10%);
+}
+
 
     .content-wrapper {
         display: flex;
@@ -136,6 +175,15 @@
         font-family: Inter, arial, sans-serif;
         padding-bottom: 30px;
         padding-top: 35px;
+    }
+
+    .subsubtitle {
+        display: block;
+        font-size: 24px; /* Slightly reduced font size */
+        line-height: 1;
+        margin: 0;
+        padding-left: 80px;
+        font-family: Inter, arial, sans-serif;
     }
 
     .buttons {
@@ -212,13 +260,15 @@
     }
 
     .dolphin-image {
-        position: absolute;
-        height: 50px;
-        width: auto;
-        left: 100%;  /* Position it right after the button */
-        top: 50%;    /* Center vertically */
-        transform: translate(15px, -50%);  /* Adjusted spacing and centering */
-    }
+    position: absolute;
+    height: 50px;
+    width: auto;
+    left: 100%;  /* Try changing this to 0 or a percentage that keeps it visible */
+    top: 50%;    /* Ensure it's properly centered */
+    transform: translate(15px, -50%);  /* Adjust the positioning if necessary */
+    z-index: 10;  /* Ensure the image appears above other content */
+}
+
 
     button, select {
         text-transform: none;
@@ -343,14 +393,7 @@
     padding: 0 10px;
     text-align: center;
 }
-@media (max-height: 700px) {
-    .framed > img {
-        display: none;
-    }
-    .artwork {
-        margin-bottom: 20px;
-    }
-}
+
     @keyframes flyup {
     0% { opacity: 1; transform: translateY(0); }
     100% { opacity: 0; transform: translateY(-5000%); }
