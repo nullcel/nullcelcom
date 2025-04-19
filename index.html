@@ -21,11 +21,13 @@
                     <button class="button" data-type="isofile" onclick="window.location.href='https://github.com/nullcel/smetana/releases/download/v1.1.0/smetana-v1.1.0.iso'">Download (x64_86)</button>
                     <img src="sd.gif" class="sd-image" alt="sd">                </div>
                 <p id="currentversion">Current Version: v1.1.0</p>
+                <p style="margin: 0%; font-size: 13px;"><a href="https://github.com/nullcel/smetana/releases">View other releases</a></p>
             </div>
             <div class="marqueecontainer" onclick="music()" onwheel="volume(event)">
                 <pre>|</pre><marquee id="marquee" scrollamount="8" behavior="scroll" width="200">nullcel productions 2025</marquee><pre>|</pre>
             </div>
         </div>
+
         <div class="down-arrow" onclick="document.querySelector('.second-section').scrollIntoView({ behavior: 'smooth' });"></div>
 
     </div>
@@ -70,7 +72,6 @@
     cursor: pointer;
     z-index: 10;
 }
-
 
 @keyframes fadeInArrow {
     from { opacity: 0; transform: translateX(-80%) translateY(10px); }
